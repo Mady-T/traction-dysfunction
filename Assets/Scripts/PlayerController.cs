@@ -5,24 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D rearWheel;
-    [SerializeField]
-    private Rigidbody2D frontWheel;
-    [SerializeField]
-    private Rigidbody2D vehicleBody;
+    [SerializeField] private Rigidbody2D rearWheel;
+    [SerializeField] private Rigidbody2D frontWheel;
+    [SerializeField] private Rigidbody2D vehicleBody;
     private InputAction moveAction;
     public float torqueCoefficient = 40000f;
-    public float brakingCoefficient = 10f;
-    public float powerRatio = 1f;
+    [Min(1)] public float brakingCoefficient = 10f;
+    [Range(0,1)] public float powerRatio = 0.8f;
     public float lockupThreshold = 10f;
-    public float reversePenalty = 0.2f;
-    public float reverseTimeout = 0.5f;
+    [Range(0,1)] public float reversePenalty = 0.2f;
+    [Min(0)] public float reverseTimeout = 0.5f;
     public float reverseThreshold = 5f;
     public float maxRpm = 12000f;
     public float revAccelerationRate = 0.25f;
-    public float revDecayRate = 1f;
-    public float fuelCapacity = 100f;
+    public float revDecayRate = 0.35f;
+    public const float fuelCapacity = 100f;
     public float fuelConsumptionCoefficient = 2f;
     public float refuellingCoefficient = 10f;
     private float currentFuel;
